@@ -475,6 +475,25 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* LIGHT MODE */
+        body.light-mode { background-color: #f0f4f8; color: #0f172a; }
+        body.light-mode .glass-card { background: rgba(255,255,255,0.7) !important; border-color: rgba(0,0,0,0.1) !important; }
+        body.light-mode .text-gray-400, body.light-mode .text-gray-300, body.light-mode .text-gray-500 { color: #334155 !important; }
+        body.light-mode nav { background: rgba(240,244,248,0.95) !important; border-color: rgba(0,0,0,0.08) !important; }
+        body.light-mode nav a { color: #0f172a; }
+        body.light-mode .bg-black\/40 { background: rgba(255,255,255,0.6) !important; }
+        body.light-mode #mobile-menu { background: #f0f4f8; }
+        body.light-mode input, body.light-mode textarea { background: rgba(0,0,0,0.05) !important; color: #0f172a !important; }
+
+        /* Bouton boule de cristal */
+        #theme-toggle {
+            background: none; border: none; cursor: pointer;
+            padding: 0; width: 36px; height: 36px; flex-shrink: 0;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        #theme-toggle:hover { transform: scale(1.2) rotate(15deg); }
+        #theme-toggle svg { width: 36px; height: 36px; }
     </style>
 </head>
 <body>
@@ -496,9 +515,11 @@
             <a href="#competences" class="hover:text-blue-400 transition">Niveau de Ki</a>
             <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
         </div>
-        <!-- Burger Icon -->
-        <div class="md:hidden text-2xl text-white focus:outline-none" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars" id="burger-icon"></i>
+        <div class="flex items-center gap-3">
+            <button id="theme-toggle" onclick="toggleTheme()" title="Changer de thème"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lg" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fde68a"/><stop offset="45%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#92400e"/></radialGradient><radialGradient id="lg2" cx="30%" cy="25%" r="40%"><stop offset="0%" stop-color="rgba(255,255,255,0.65)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(#lg)" stroke="#d97706" stroke-width="1.2"/><circle cx="16" cy="16" r="14" fill="url(#lg2)"/><polygon points="16,10.5 17.5,14.5 21.5,14.5 18.3,17 19.5,21 16,18.5 12.5,21 13.7,17 10.5,14.5 14.5,14.5" fill="rgba(210,40,40,0.95)" stroke="rgba(130,15,15,0.5)" stroke-width="0.4"/><ellipse cx="11" cy="10" rx="3.5" ry="2" fill="rgba(255,255,255,0.4)" transform="rotate(-30 11 10)"/></svg></button>
+            <div class="md:hidden text-2xl text-white focus:outline-none" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars" id="burger-icon"></i>
+            </div>
         </div>
     </nav>
      <!-- MENU MOBILE OVERLAY -->
@@ -1010,7 +1031,15 @@
     
     <script>
         const projects = [
-        
+               {
+                id: 0,
+                title: "Visuel de promotion pour un espace thermoludique",
+                category: "Exprimer",
+                desc: "Conception d’un flyer pour la réouverture de l’espace thermoludique Vitalys. Création du logo, mise en page sur Canva avec images inspirées de Ravine Chaude et intégration des informations clés : nom, slogan, date d’ouverture.",
+                img: "images2/Affiche-Vitalys-cp.jpg",
+                link: "https://www.canva.com/design/DAGm4HNe9GY/zqqKKqi6Lo1yl_j5m7SSew/view?utm_content=DAGm4HNe9GY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb0d1f8e301",
+                span: "md:col-span-2 md:row-span-2"
+            },
             {
                 id: 1,
                 title: "Création d'un logo unique, Dragonix le studio de jeu de combat Next Gen",
@@ -1022,6 +1051,15 @@
             },
             {
                 id: 2,
+                title: "Réaliser un visionboard",
+                category: "Entreprendre",
+                desc: "Réalisation d’un vision board branding illustrant mon image de soi idéale à travers un collage de mots, lieux et personnes inspirantes. Conçu sur Canva, ce projet m’a permis d’explorer l’expression visuelle personnelle.",
+                img: "images2/My-Vision-Board-cp 3.jpg",
+                link: "https://www.canva.com/design/DAF1wsKcaUk/Af4gws3IdFzYdtLatbncwA/view?utm_content=DAF1wsKcaUk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h53ca4d089c",
+                span: "md:col-span-1"
+            },
+            {
+                id: 3,
                 title: "SAE 1.05 : Produire un site web",
                 category: "Développer",
                 desc: "Création en groupe d’un site web sur la culture guadeloupéenne, avec 4 pages thématiques. Participation à la recherche de contenu et au développement HTML/CSS du site. Travail collaboratif sur Figma.",
@@ -1030,7 +1068,25 @@
                 span: "md:col-span-2"
             },
             {
-                id: 3,
+                id: 4,
+                title: "Projet tournois de jeux vidéos",
+                category: "Entreprendre",
+                desc: "Mise en place d’un tournoi e-sport étudiant, de la planification à la communication. Répartition des rôles, création d’un budget prévisionnel de 200 € et gestion logistique complète de l’événement.",
+                img: "images2/Affiche-Gaming-Tournament-cp.jpg",
+                link: "https://www.canva.com/design/DAGm4Me-jhg/ca33ec5SBwGbj40pF9Vu2g/view?utm_content=DAGm4Me-jhg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hbaa569b1db",
+                span: "md:col-span-1"
+            },
+            {
+                id: 5,
+                title: "Affiche gardien de la galaxie",
+                category: "Exprimer",
+                desc: "Réalisation d’une affiche inspirée du tutoriel “Affiche X-Men” en utilisant Photoshop. Incrustation du personnage Star-Lord sur un fond extraterrestre et travail sur la typographie originale.",
+                img: "images2/Affiche gardien de la galaxie 2.png",
+                link: "https://www.canva.com/design/DAGm4LKYzfA/jkJBF8rqKDWi9t2rKSmZjQ/view?utm_content=DAGm4LKYzfA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdcaa445dde",
+                span: "md:col-span-1"
+            },
+            {
+                id: 6,
                 title: "SAE 1.04 : Produire un contenu audio et visuel",
                 category: "Exprimer",
                 desc: "Conception en groupe d’un court-métrage de 3 minutes, de l’écriture du scénario au montage final. J’ai assuré la captation vidéo en tant que cameraman et participé à la direction artistique.",
@@ -1039,7 +1095,16 @@
                 span: "md:col-span-2"
             },
             {
-                id: 4,
+                id: 7,
+                title: "Stratégie de communication pour l’agence Penchard Voyages",
+                category: "Comprendre",
+                desc: "Analyse complète de la stratégie de communication de l’agence : identification des cibles, canaux utilisés et positionnement. Proposition d’axes d’amélioration à partir d’une étude de marché.",
+                img: "images2/miniaPenchardVoyages.png",
+                link: "https://www.canva.com/design/DAF9hgMg5fk/tj5q3TEPBid1fU-6yhUauA/view?utm_content=DAF9hgMg5fk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8031a5b60c",
+                span: "md:col-span-1"
+            },
+            {
+                id: 8,
                 title: "SAE 1.01 : Auditer une communication numérique",
                 category: "Comprendre",
                 desc: "Réalisation d’un audit de vidéos YouTube de la chaîne Cellule Enov. Évaluation de la qualité visuelle, sonore et de la pertinence du discours. Identification des points d’amélioration narrative.",
@@ -1048,16 +1113,16 @@
                 span: "md:col-span-1"
             },
             {
-                id: 5,
-                title: "SAE 3.02 : Prosuire les contenus pour une communication plurimédia",
+                id: 9,
+                title: "Concevoir une affiche pour présenter les filières de L'IUT",
                 category: "Concevoir",
                 desc: "Conception d’un flyer institutionnel présentant les formations de l’IUT de la Guadeloupe : mise en page hiérarchisée, intégration de QR codes et respect de la charte graphique.",
                 img: "images2/Affiche-formations-IUT-de-la-Guadeloupe-V2.jpg",
-                link: "https://www.canva.com/design/DAHIMUtqgO8/fYCuQAZ670ecZLy05_w7aw/view?utm_content=DAHIMUtqgO8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1e9a1d3205",
+                link: "https://www.canva.com/design/DAGm4b3asew/9jFQQ3SsQd8_qg2sC1igrQ/view?utm_content=DAGm4b3asew&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hbc9f03ec26",
                 span: "md:col-span-2"
             },
             {
-                id: 6,
+                id: 10,
                 title: "SAE 1.02 : Recommandation de communication numérique",
                 category: "Concevoir",
                 desc: "Conception d’une affiche promotionnelle en anglais destinée à valoriser l’apprentissage des langues. Élaboration d’une stratégie visuelle ludique pour rendre le message attractif.",
@@ -1066,7 +1131,16 @@
                 span: "md:col-span-1"
             },
             {
-                id: 7,
+                id: 11,
+                title: "Design émotionnel pour une campagne (Chlordécone)",
+                category: "Concevoir",
+                desc: "Création d’une affiche de sensibilisation sur la pollution au chlordécone. Application des principes du design émotionnel pour susciter l’empathie et inciter à la prise de conscience.",
+                img: "images2/Affiche-de- campagne-de sensibilisation-sur le-chlordécone.jpg",
+                link: "https://www.canva.com/design/DAGDFYbt4aE/LvLMNvd8bfHjnrczHnVi5g/view?utm_content=DAGDFYbt4aE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h2e31defddb",
+                span: "md:col-span-1"
+            },
+            {
+                id: 12,
                 title: "SAE 2.02 : Concevoir un produit et sa communication",
                 category: "Développer",
                 desc: "Conception d’un site vitrine pour une marque de thé glacé locale. Gestion du projet web complet : création des pages, diagramme de Gantt et suivi du planning. Projet associant design et code.",
@@ -1075,16 +1149,43 @@
                 span: "md:col-span-2"
             },
             {
-                id: 8,
-                title: "Fiction Interro Surprise",
-                category: "Concevoir",
-                desc: "Réalisation d'un court-métrage narratif muet produit en 24h : lors d'un examen, des étudiants profitent de l'absence du professeur pour tricher, avant d'être confrontés à une preuve vidéo de leur faute. Un projet alliant écriture à chute, mise en scène de la tension et montage rythmique individuel.",
-                img: "images2/minia fiction.png",
-                link: "https://youtu.be/w0WqZ_nK_O4",
+                id: 13,
+                title: "Vidéo type Day in my life à l’ASFO",
+                category: "Entreprendre",
+                desc: "Réalisation d’une vidéo storytelling illustrant une journée de formation de façon immersive. Tournée au smartphone, elle combine narration, humour et voix off pour un rendu authentique.",
+                img: "images2/Day in my Life by EC.png",
+                link: "https://www.canva.com/design/DAGVYG3a2Bo/mzSUH_haA0OEdbBK1RmuBQ/watch?utm_content=DAGVYG3a2Bo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h489805ea3b",
                 span: "md:col-span-1"
             },
             {
-                id: 9,
+                id: 14,
+                title: "Stratégie de communication pour Vitalys",
+                category: "Comprendre",
+                desc: "Réalisation d’une campagne complète pour la réouverture du centre Vitalys : définition des cibles, identité visuelle et plan média avec budget de 20 000 € et rétroplanning.",
+                img: "images2/miniaVitalys.png",
+                link: "https://www.canva.com/design/DAGW1Ov4n2Q/Iji-YDa1n1isiIAQfPCnmg/view?utm_content=DAGW1Ov4n2Q&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3a6387f84c",
+                span: "md:col-span-1"
+            },
+            {
+                id: 15,
+                title: "Animation d’intro vidéo Interface 2025",
+                category: "Entreprendre",
+                desc: "Création d’une animation vidéo du logo MMI sur After Effects pour l’événement Interface 2025. Utilisation d’effets de lumière et caméra virtuelle pour un rendu professionnel.",
+                img: "images2/ANIMATION INTRO BUTMMI.png",
+                link: "https://www.canva.com/design/DAGm5WpfK74/M7KsMgaxPpJRRO6MfogFhA/watch?utm_content=DAGm5WpfK74&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7bbcf7d8b9",
+                span: "md:col-span-2"
+            },
+            {
+                id: 16,
+                title: "Etude de Cas : La Pépinière Citoyenne",
+                category: "Comprendre",
+                desc: "Création d’une stratégie éditoriale pour une association de jardin partagé : cibles, calendrier de publication, charte éditoriale et logo. Mise en place d’indicateurs d'engagement.",
+                img: "images2/Logo La Pépinière Citoyenne.png",
+                link: "https://www.canva.com/design/DAGn1ywW-3E/xC2E7JKWYKGXGL2S8PFONA/view?utm_content=DAGn1ywW-3E&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h46c7a1c649",
+                span: "md:col-span-1"
+            },
+            {
+                id: 17,
                 title: "Interview de Catherine – Interface 2025",
                 category: "Entreprendre",
                 desc: "Tournage et montage vidéo d’une interview professionnelle. Captation 9:16 avec DJI Osmo Pocket 3, ajout de sous-titres et habillage graphique cohérent.",
@@ -1093,7 +1194,7 @@
                 span: "md:col-span-1"
             },
             {
-                id: 10,
+                id: 18,
                 title: "SAE 4.CREA.02 – FAQ Instagram IUT",
                 category: "Exprimer",
                 desc: "Création d’une story interactive de FAQ sur Canva pour informer les futurs étudiants. Conception visuelle conforme à la charte IUT et liens interactifs.",
@@ -1102,25 +1203,43 @@
                 span: "md:col-span-2"
             },
             {
-                id: 11,
-                title: "Business Model Canvas d’Aroma-Zone",
-                category: "Entreprendre",
-                desc: "Analyse du modèle économique d'Aroma-Zone : étude de la stratégie bio et fait-maison de la marque, recherche des informations clés pour construire le projet et organisation du travail d'équipe pour préparer le script et le diaporama final",
-                img: "images2/SKINCARe minia.jpg",
-                link: "https://www.canva.com/design/DAHFYCkiwZo/to-spjWBiNt7GXrk_penNw/view?utm_content=DAHFYCkiwZo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1b55e12191",
-                span: "md:col-span-1"
-            },
-            {
-                id: 12,
-                title: "Réel les prix du carburant en Guadeloupe",
+                id: 19,
+                title: "Court-métrage thriller – Hors-champ",
                 category: "Exprimer",
-                desc: "Analyse de la fracture territoriale en Guadeloupe à travers l'étude du budget transport : une enquête multimédia sourcée et produite en 24h, démontrant l'impact du prix des carburants et des réformes du permis de conduire sur l'insertion professionnelle des jeunes.",
-                img: "images2/minia reel carburant.png",
-                link: "https://youtube.com/shorts/mgvHaR5NvaI",
+                desc: "Réalisation d’un thriller reposant sur le hors-champ et le sound design. Montage sur DaVinci Resolve pour installer une tension narrative immersive.",
+                img: "images2/CAPTURE THRILLER HORS CHAMP.png",
+                link: "https://youtu.be/nEBoauXwSJQ",
                 span: "md:col-span-1"
             },
             {
-                id: 13,
+                id: 20,
+                title: "GwadaCollect – Application Mobile",
+                category: "Entreprendre",
+                desc: "Conception d'une application éco-citoyenne pour la collecte des déchets en Guadeloupe. Centralisation des infos, notifications et guide du tri local.",
+                img: "images2/CAPTURE GWADA COLLECT.png",
+                link: "https://www.canva.com/design/DAG1n7LIqwo/E2RX_kUmHXKaFAPkbQr2lw/view?utm_content=DAG1n7LIqwo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8dab637b84",
+                span: "md:col-span-2"
+            },
+            {
+                id: 21,
+                title: "Post éditorial J-V – Blo’k Actu",
+                category: "Entreprendre",
+                desc: "Réalisation d’un post éditorial pour valoriser les sorties jeux vidéo. Recherche de titres, sélection d’extraits et respect de la ligne éditoriale du média.",
+                img: "images2/jv nouveautés (1080 x 1350 px).jpg",
+                link: "https://www.canva.com/design/DAG2bt7zJkE/GhNNqq9Zo-ztsU8SJrUZVA/watch?utm_content=DAG2bt7zJkE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h262dabe7c3",
+                span: "md:col-span-1"
+            },
+            {
+                id: 22,
+                title: "Conduite du changement – Étude de cas",
+                category: "Exprimer",
+                desc: "Conception d’un cours sur la conduite du changement en entreprise. Définition du concept, étapes clés et présentation d'un cas concret professionnel.",
+                img: "images2/R5.02_Conduite du changement SABAN & CARAIBE COURS.pdf.jpg",
+                link: "https://www.canva.com/design/DAG9pUNhEIE/YYwKXHepMv8tYENuWW2KVg/view?utm_content=DAG9pUNhEIE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hac8e105987",
+                span: "md:col-span-1"
+            },
+            {
+                id: 23,
                 title: "Atelier FAB Lab – Impression 3D",
                 category: "Entreprendre",
                 desc: "Atelier au BIK’LAB dédié à l’initiation à l’impression 3D. Découverte du prototypage numérique et réalisation d'une première impression additive.",
@@ -1129,7 +1248,7 @@
                 span: "md:col-span-2"
             },
             {
-                id: 14,
+                id: 24,
                 title: "Assemblée générale UNSA",
                 category: "Personnel",
                 desc: "Conception d’une affiche A3 pour l’UNSA Douanes. Déclinaison de la charte graphique et gestion de la chaîne de production avec imprimeur professionnel.",
@@ -1138,7 +1257,7 @@
                 span: "md:col-span-1"
             },
             {
-                id: 15,
+                id: 25,
                 title: "Documentaire - Le Joueur Intérieur",
                 category: "Personnel",
                 desc: "Projet documentaire personnel explorant le jeu vidéo comme miroir de la psyché humaine. Esthétique minimaliste et montage introspectif rythmé.",
@@ -1150,6 +1269,19 @@
 
         let currentProjectIndex = 0;
         let filteredProjects = [...projects];
+
+        const LIGHT_BALL = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lg" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fde68a"/><stop offset="45%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#92400e"/></radialGradient><radialGradient id="lg2" cx="30%" cy="25%" r="40%"><stop offset="0%" stop-color="rgba(255,255,255,0.65)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(#lg)" stroke="#d97706" stroke-width="1.2"/><circle cx="16" cy="16" r="14" fill="url(#lg2)"/><polygon points="16,10.5 17.5,14.5 21.5,14.5 18.3,17 19.5,21 16,18.5 12.5,21 13.7,17 10.5,14.5 14.5,14.5" fill="rgba(210,40,40,0.95)" stroke="rgba(130,15,15,0.5)" stroke-width="0.4"/><ellipse cx="11" cy="10" rx="3.5" ry="2" fill="rgba(255,255,255,0.4)" transform="rotate(-30 11 10)"/></svg>`;
+        const DARK_BALL  = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="dg" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#5a6a8a"/><stop offset="45%" stop-color="#1e2a40"/><stop offset="100%" stop-color="#080e1a"/></radialGradient><radialGradient id="dg2" cx="30%" cy="25%" r="40%"><stop offset="0%" stop-color="rgba(160,190,255,0.5)"/><stop offset="100%" stop-color="rgba(160,190,255,0)"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(#dg)" stroke="#1e3a5f" stroke-width="1.2"/><circle cx="16" cy="16" r="14" fill="url(#dg2)"/><polygon points="16,9 17,11.8 20,11.8 17.8,13.5 18.6,16.2 16,14.6 13.4,16.2 14.2,13.5 12,11.8 15,11.8" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.35"/><polygon points="10,17 10.8,19.4 13.2,19.4 11.4,20.8 12,23 10,21.6 8,23 8.6,20.8 6.8,19.4 9.2,19.4" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.3"/><polygon points="22,17 22.8,19.4 25.2,19.4 23.4,20.8 24,23 22,21.6 20,23 20.6,20.8 18.8,19.4 21.2,19.4" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.3"/><polygon points="16,18 16.7,20 18.8,20 17.2,21.2 17.8,23.2 16,22 14.2,23.2 14.8,21.2 13.2,20 15.3,20" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.3"/><ellipse cx="11" cy="10" rx="3.5" ry="2" fill="rgba(200,220,255,0.18)" transform="rotate(-30 11 10)"/></svg>`;
+
+        function toggleTheme() {
+            const isLight = document.body.classList.toggle('light-mode');
+            document.getElementById('theme-toggle').innerHTML = isLight ? DARK_BALL : LIGHT_BALL;
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.addEventListener('DOMContentLoaded', () => document.getElementById('theme-toggle').innerHTML = DARK_BALL);
+        }
 
          function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -1227,24 +1359,13 @@
         }
 
         function getYoutubeEmbedUrl(url) {
-    // youtu.be/ID
-    let m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
-    if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
-    // youtube.com/shorts/ID
-    m = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
-    if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
-    // youtube.com/watch?v=ID
-    m = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
-    if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
-    return null;
-}
-
-        function getCanvaEmbedUrl(url) {
-            // Extrait les segments du lien Canva et construit proprement l'URL embed
-            // Format attendu : https://www.canva.com/design/ID/SLUG/view?... ou /watch?...
-            const m = url.match(/canva\.com\/design\/([^/]+)\/([^/]+)\/(view|watch)/);
-            if (m) return 'https://www.canva.com/design/' + m[1] + '/' + m[2] + '/' + m[3] + '?embed';
-            return url; // fallback : lien original
+            // youtu.be/ID
+            let m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+            if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
+            // youtube.com/watch?v=ID
+            m = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+            if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
+            return null;
         }
 
         function openPreviewModal() {
@@ -1290,9 +1411,7 @@
             } else if (type === 'canva') {
                 typeBadge.textContent = '✦ Canva';
                 typeBadge.style.display = 'inline-block';
-                iframe.setAttribute('allow', 'fullscreen');
-                iframe.style.display = 'block';
-                iframe.src = getCanvaEmbedUrl(project.link);
+                showPreviewCanva(project);
             } else if (type === 'gdocs') {
                 typeBadge.textContent = '📄 PDF';
                 typeBadge.style.display = 'inline-block';
