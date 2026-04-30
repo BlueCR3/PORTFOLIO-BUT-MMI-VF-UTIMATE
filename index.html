@@ -369,16 +369,21 @@
             z-index: 200;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 16px;
         }
 
         .preview-container {
             width: 100%;
             max-width: 1200px;
-            height: 90vh;
+            height: 95vh;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+        }
+
+        @media (min-width: 640px) {
+            #preview-modal { padding: 20px; }
+            .preview-container { height: 90vh; gap: 12px; }
         }
 
         .preview-header {
@@ -908,13 +913,16 @@
                 <!-- iFrame (YouTube embed ou site web) -->
                 <iframe id="preview-iframe" src="" allow="autoplay; fullscreen" onload="onIframeLoad()" onerror="showPreviewFallback()"></iframe>
                 <!-- Bloc image Canva / aperçu image -->
-                <div id="preview-img-block" style="display:none; position:absolute; inset:0; flex-direction:column; justify-content:center; align-items:center; background:#05070A; gap:24px; padding:32px;">
-                    <img id="preview-big-img" src="" alt="Aperçu" style="max-height:65%; max-width:90%; object-fit:contain; border-radius:12px; border:1px solid rgba(0,163,255,0.2); box-shadow: 0 0 40px rgba(0,163,255,0.1);">
-                    <div style="text-align:center;">
-                        <p id="preview-canva-title" class="dbz-font text-sm italic font-black uppercase text-white mb-4"></p>
-                        <p class="text-gray-500 text-xs mb-6">L'aperçu interactif n'est pas disponible pour ce type de lien.</p>
-                        <a id="preview-canva-btn" href="#" target="_blank" class="btn-ki px-8 py-3 rounded-full font-bold uppercase text-xs flex items-center gap-2 mx-auto" style="width:fit-content;">
-                            <i class="fas fa-external-link-alt"></i> Ouvrir le projet
+                <div id="preview-img-block" style="display:none; position:absolute; inset:0; flex-direction:column; justify-content:center; align-items:center; background:#05070A; gap:0; overflow:hidden;">
+                    <!-- Image zone -->
+                    <div style="flex:1; width:100%; display:flex; align-items:center; justify-content:center; padding:16px 16px 8px; min-height:0;">
+                        <img id="preview-big-img" src="" alt="Aperçu" style="max-height:100%; max-width:100%; width:auto; height:auto; object-fit:contain; border-radius:10px; border:1px solid rgba(0,163,255,0.2); box-shadow: 0 0 40px rgba(0,163,255,0.08);">
+                    </div>
+                    <!-- Footer compact -->
+                    <div style="width:100%; padding:10px 16px 14px; display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.05); flex-shrink:0; gap:12px;">
+                        <p id="preview-canva-title" class="dbz-font text-xs italic font-black uppercase text-white/80 truncate" style="flex:1; margin:0;"></p>
+                        <a id="preview-canva-btn" href="#" target="_blank" class="btn-ki px-5 py-2 rounded-full font-bold uppercase text-[10px] flex items-center gap-2 whitespace-nowrap" style="flex-shrink:0;">
+                            <i class="fas fa-external-link-alt"></i> Ouvrir
                         </a>
                     </div>
                 </div>
@@ -1017,7 +1025,7 @@
                 category: "Concevoir",
                 desc: "Création d’un logo original pour un studio de jeux de combat : choix typographique, ajout d’effets visuels et déclinaisons sur mock-ups pour garantir une identité cohérente, responsive et impactante sur tout support.",
                 img: "images2/Plan-de-travail-9_3-cp.jpg",
-                link: "https://heyzine.com/flip-book/70f33e73df.html",
+                link: "https://www.canva.com/design/DAGcM9i2V-E/j12JE-KQPLoScWYfmk4MVg/view?utm_content=DAGcM9i2V-E&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3f354637ea",
                 span: "md:col-span-1"
             },
             {
@@ -1053,7 +1061,7 @@
                 category: "Exprimer",
                 desc: "Réalisation d’une affiche inspirée du tutoriel “Affiche X-Men” en utilisant Photoshop. Incrustation du personnage Star-Lord sur un fond extraterrestre et travail sur la typographie originale.",
                 img: "images2/Affiche gardien de la galaxie 2.png",
-                link: "https://drive.google.com/file/d/1XpJYeby-mTiSc91-XN3Pw9tk5nOB-FTK/view?usp=sharing",
+                link: "https://www.canva.com/design/DAGm4LKYzfA/jkJBF8rqKDWi9t2rKSmZjQ/view?utm_content=DAGm4LKYzfA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdcaa445dde",
                 span: "md:col-span-1"
             },
             {
@@ -1071,7 +1079,7 @@
                 category: "Comprendre",
                 desc: "Analyse complète de la stratégie de communication de l’agence : identification des cibles, canaux utilisés et positionnement. Proposition d’axes d’amélioration à partir d’une étude de marché.",
                 img: "images2/miniaPenchardVoyages.png",
-                link: "https://docs.google.com/viewer?url=https://bluecr3.github.io/PORTFOLIO-BUT-MMI-VF-UTIMATE/images2/Pr%C3%A9sentation%20de%20l'Agence%20Penchard%20Voyages.pdf&embedded=true",
+                link: "https://www.canva.com/design/DAF9hgMg5fk/tj5q3TEPBid1fU-6yhUauA/view?utm_content=DAF9hgMg5fk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8031a5b60c",
                 span: "md:col-span-1"
             },
             {
@@ -1312,12 +1320,16 @@
         function detectLinkType(url) {
             if (/youtube\.com|youtu\.be/.test(url)) return 'youtube';
             if (/canva\.com/.test(url)) return 'canva';
+            if (/docs\.google\.com\/viewer/.test(url)) return 'gdocs';
             return 'iframe';
         }
 
         function getYoutubeEmbedUrl(url) {
             // youtu.be/ID
             let m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+            if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
+            // youtube.com/shorts/ID
+            m = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
             if (m) return 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0';
             // youtube.com/watch?v=ID
             m = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
@@ -1362,7 +1374,6 @@
                 if (embedUrl) {
                     iframe.style.display = 'block';
                     iframe.src = embedUrl;
-                    // YouTube embed loads quickly, hide loading on load event
                 } else {
                     showPreviewCanva(project);
                 }
@@ -1370,6 +1381,12 @@
                 typeBadge.textContent = '✦ Canva';
                 typeBadge.style.display = 'inline-block';
                 showPreviewCanva(project);
+            } else if (type === 'gdocs') {
+                typeBadge.textContent = '📄 PDF';
+                typeBadge.style.display = 'inline-block';
+                iframe.style.display = 'block';
+                iframe.removeAttribute('sandbox');
+                iframe.src = project.link;
             } else {
                 typeBadge.style.display = 'none';
                 iframe.style.display = 'block';
