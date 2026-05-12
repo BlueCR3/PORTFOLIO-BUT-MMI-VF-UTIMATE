@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethan Caraïbe | Z-Portfolio MMI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Portfolio de Ethan Caraïbe — Infographiste et Web Designer, étudiant en 3ᵉ année de BUT MMI à l'IUT de la Guadeloupe. Découvrez mes projets en design graphique, développement web et communication.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#05070A">
+    <meta property="og:title" content="Ethan Caraïbe | Portfolio Infographiste & Web Designer">
+    <meta property="og:description" content="Portfolio MMI — Design graphique, développement front-end et communication multimédia.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bluecr3.github.io/PORTFOLIO-BUT-MMI-VF-ESSENTIAL/">
+    <title>Ethan Caraïbe | Portfolio Infographiste & Web Designer</title>
+    <!-- Preconnect pour accélérer le chargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- Tailwind en defer pour ne pas bloquer le rendu -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Font Awesome en async -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- Polices avec display=swap pour éviter le FOIT -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -476,27 +491,28 @@
             to { transform: rotate(360deg); }
         }
 
-        /* LIGHT MODE */
-        body.light-mode { background-color: #f0f4f8; color: #0f172a; }
-        body.light-mode .glass-card { background: rgba(255,255,255,0.7) !important; border-color: rgba(0,0,0,0.1) !important; }
-        body.light-mode .text-gray-400, body.light-mode .text-gray-300, body.light-mode .text-gray-500 { color: #334155 !important; }
-        body.light-mode nav { background: rgba(240,244,248,0.95) !important; border-color: rgba(0,0,0,0.08) !important; }
-        body.light-mode nav a { color: #0f172a; }
-        body.light-mode .bg-black\/40 { background: rgba(255,255,255,0.6) !important; }
-        body.light-mode #mobile-menu { background: #f0f4f8; }
-        body.light-mode input, body.light-mode textarea { background: rgba(0,0,0,0.05) !important; color: #0f172a !important; }
-
-        /* Bouton boule de cristal */
-        #theme-toggle {
-            background: none; border: none; cursor: pointer;
-            padding: 0; width: 36px; height: 36px; flex-shrink: 0;
-            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        /* ── PERFORMANCE & ACCESSIBILITÉ ── */
+        /* Focus visible pour navigation clavier */
+        :focus-visible { outline: 2px solid var(--dbz-blue); outline-offset: 3px; border-radius: 4px; }
+        /* Lazy loading natif sur les images */
+        img { content-visibility: auto; }
+        /* GPU acceleration sur les animations */
+        .glass-card { will-change: transform; contain: layout style; }
+        .aura-bg { will-change: transform, opacity; }
+        .genkidama { will-change: transform, opacity, filter; }
+        /* Réduction animations si préférence système */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
-        #theme-toggle:hover { transform: scale(1.2) rotate(15deg); }
-        #theme-toggle svg { width: 36px; height: 36px; }
+        /* Contraste amélioré pour accessibilité mobile */
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        /* Font-display pour éviter FOIT */
+        @font-face { font-display: swap; }
     </style>
 </head>
 <body>
+    <a href="#main-content" style="position:absolute;left:-9999px;top:4px;z-index:9999;padding:8px 16px;background:var(--dbz-blue);color:#fff;font-weight:bold;border-radius:99px;font-size:12px;text-transform:uppercase;" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Aller au contenu principal</a>
     <!-- Fond animé Genkidama Centré -->
     <div class="aura-bg"></div>
     <div class="genkidama-container">
@@ -504,7 +520,7 @@
     </div>
     <div id="energy-field" class="fixed inset-0 pointer-events-none z-[-1]"></div>
     <!-- NAVIGATION -->
-    <nav class="fixed w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center">
+    <nav class="fixed w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center" aria-label="Navigation principale">
         <div class="dbz-font text-2xl font-black tracking-tighter italic">
             ETHAN<span class="text-blue-500">CARAÏBE</span>
         </div>
@@ -515,17 +531,14 @@
             <a href="#competences" class="hover:text-blue-400 transition">Niveau de Ki</a>
             <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
         </div>
-        <div class="flex items-center gap-3">
-            <button id="theme-toggle" onclick="toggleTheme()" title="Changer de thème"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lg" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fde68a"/><stop offset="45%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#92400e"/></radialGradient><radialGradient id="lg2" cx="30%" cy="25%" r="40%"><stop offset="0%" stop-color="rgba(255,255,255,0.65)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(#lg)" stroke="#d97706" stroke-width="1.2"/><circle cx="16" cy="16" r="14" fill="url(#lg2)"/><polygon points="16,10.5 17.5,14.5 21.5,14.5 18.3,17 19.5,21 16,18.5 12.5,21 13.7,17 10.5,14.5 14.5,14.5" fill="rgba(210,40,40,0.95)" stroke="rgba(130,15,15,0.5)" stroke-width="0.4"/><ellipse cx="11" cy="10" rx="3.5" ry="2" fill="rgba(255,255,255,0.4)" transform="rotate(-30 11 10)"/></svg></button>
-            <div class="md:hidden text-2xl text-white focus:outline-none" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars" id="burger-icon"></i>
-            </div>
-        </div>
+        <button class="md:hidden text-2xl text-white" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="mobile-menu" id="burger-btn">
+            <i class="fas fa-bars" aria-hidden="true" id="burger-icon" aria-hidden="true"></i>
+        </button>
     </nav>
      <!-- MENU MOBILE OVERLAY -->
     <div id="mobile-menu" class="fixed inset-0 bg-[#05070A] z-[60] flex flex-col justify-center items-center p-8 md:hidden">
-        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-3xl">
-            <i class="fas fa-times"></i>
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-3xl" aria-label="Fermer le menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
         </button>
         <div class="flex flex-col gap-8 text-center">
             <a href="#accueil" onclick="toggleMobileMenu()" class="dbz-font text-3xl italic font-black hover:text-blue-500 transition">ACCUEIL</a>
@@ -535,10 +548,11 @@
             <a href="#contact" onclick="toggleMobileMenu()" class="dbz-font text-3xl italic font-black hover:text-blue-500 transition">CONTACT</a>
         </div>
         <div class="mt-16 flex gap-6 text-2xl">
-            <a href="https://www.linkedin.com/in/ethan-caraibe-1bb3172ba/" class="text-blue-500"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/blue93971/" class="text-blue-500"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ethan-caraibe-1bb3172ba/" class="text-blue-500" aria-label="LinkedIn de Ethan Caraïbe" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/blue93971/" class="text-blue-500" aria-label="Instagram de Ethan Caraïbe" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i></a>
         </div>
     </div>
+    <main id="main-content">
     <!-- HERO SECTION -->
     <section id="accueil" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
         <div class="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
@@ -556,7 +570,7 @@
            <a href="#contact" class="flex items-center justify-center px-6 py-3 md:px-8 rounded-full border border-white/20 hover:bg-white/10 transition font-bold uppercase tracking-tighter text-sm md:text-base">Me contacter</a>
             </a>
             <button onclick="toggleModal()" class="px-6 py-3 md:px-8 md:py-4 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition font-bold uppercase tracking-tighter text-sm md:text-base flex items-center gap-2">
-                <i class="fas fa-file-invoice"></i> Mon CV
+                <i class="fas fa-file-invoice" aria-hidden="true"></i> Mon CV
             </button>
         </div>
     </section>
@@ -564,7 +578,7 @@
     <section id="presentation" class="py-24 px-6 md:px-12 max-w-5xl mx-auto">
         <div class="glass-card p-8 md:p-16 border-blue-500/20 relative overflow-hidden">
             <div class="absolute top-0 right-0 p-4 opacity-10">
-                <i class="fas fa-user-ninja text-9xl"></i>
+                <i class="fas fa-user-ninja text-9xl" aria-hidden="true"></i>
             </div>
             <h2 class="dbz-font text-3xl md:text-4xl font-black italic mb-8 uppercase">
                 Bonjour, je suis <span class="text-blue-500">Ethan Caraïbe</span>
@@ -602,17 +616,17 @@
     </section>
 
   <!-- MODALE PROJET -->
-    <div id="project-modal" class="custom-modal" onclick="closeModalOnOverlay(event)">
+    <div id="project-modal" class="custom-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="closeModalOnOverlay(event)">
         <div class="modal-body">
             
             <!-- Flèches Bureau (Positionnée par rapport à modal-body) -->
-            <div class="hidden lg:flex nav-arrow nav-prev" onclick="changeProject(-1)"><i class="fas fa-chevron-left"></i></div>
-            <div class="hidden lg:flex nav-arrow nav-next" onclick="changeProject(1)"><i class="fas fa-chevron-right"></i></div>
+            <div class="hidden lg:flex nav-arrow nav-prev" onclick="changeProject(-1)"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
+            <div class="hidden lg:flex nav-arrow nav-next" onclick="changeProject(1)"><i class="fas fa-chevron-right" aria-hidden="true"></i></div>
             
             <div class="glass-card overflow-hidden flex flex-col md:flex-row h-full max-h-[85vh] w-full border-white/20">
                 <!-- Image -->
                 <div class="md:w-3/5 bg-gray-900 overflow-hidden h-64 md:h-auto bg-black">
-                    <img id="modal-img" src="" alt="Projet" class="w-full h-full object-contain ">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-contain">
                 </div>
                 <!-- Texte -->
                 <div class="md:w-2/5 p-5 md:p-12 flex flex-col items-center justify-center bg-black/40">
@@ -623,7 +637,7 @@
                     <div class="flex gap-4 flex-wrap">
                         <a id="modal-link" href="#" target="_blank" class="btn-ki px-8 py-3 rounded-full font-bold uppercase text-xs">Voir en détails</a>
                         <button id="preview-btn" onclick="openPreviewModal()" class="px-8 py-3 rounded-full border border-blue-500/50 text-blue-400 hover:bg-blue-500/10 transition font-bold uppercase text-xs flex items-center gap-2">
-                            <i class="fas fa-eye"></i> Preview
+                            <i class="fas fa-eye" aria-hidden="true"></i> Preview
                         </button>
                         <button onclick="closeProjectModal()" class="px-8 py-3 rounded-full border border-white/10 hover:bg-white/5 transition font-bold uppercase text-xs">Fermer</button>
                     </div>
@@ -631,10 +645,10 @@
                     <!-- Navigation Mobile (Visible uniquement sous 1200px) -->
                     <div class="modal-nav-mobile hidden mt-10 flex justify-between w-full border-t border-white/10 pt-6">
                         <button onclick="changeProject(-1)" class="flex items-center gap-2 text-blue-500 font-bold uppercase text-xs hover:text-white transition">
-                            <i class="fas fa-chevron-left"></i> Précédent
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i> Précédent
                         </button>
                         <button onclick="changeProject(1)" class="flex items-center gap-2 text-blue-500 font-bold uppercase text-xs hover:text-white transition">
-                            Suivant <i class="fas fa-chevron-right"></i>
+                            Suivant <i class="fas fa-chevron-right" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -646,13 +660,13 @@
     </div>
     
     <!-- MODAL CV - OPTIMISÉ MOBILE AVEC JPEG -->
-    <div id="cv-modal" class="custom-modal-overlay" onclick="closeOnOverlay(event)">
+    <div id="cv-modal" class="custom-modal-overlay" onclick="closeOnOverlay(event)" role="dialog" aria-modal="true" aria-label="Curriculum Vitae">
         <div class="modal-content glass-card">
             <span class="close-modal" onclick="toggleModal()">&times;</span>
             <div class="p-6 border-b border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-blue-500/5 gap-4 sm:gap-0">
                 <h2 class="dbz-font text-lg sm:text-xl italic font-black uppercase">CURRICULUM <span class="text-blue-500">VITAE</span></h2>
                 <a href="images2/CV Caraibe Ethan VF.pdf" download class="btn-ki px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 w-full sm:w-auto justify-center">
-                    <i class="fas fa-download"></i> Télécharger PDF
+                    <i class="fas fa-download" aria-hidden="true"></i> Télécharger PDF
                 </a>
             </div>
             <div class="flex-grow overflow-auto p-4 bg-white/5 flex justify-center items-start">
@@ -680,73 +694,73 @@
                 
                 <!-- DaVinci Resolve (Source Wikimedia - Official) -->
                 <div class="skill-badge flex flex-col items-center">
-                    <img src="images2/DaVinci_Resolve_Studio.png" alt="DaVinci Resolve" class="skill-logo">
+                    <img src="images2/DaVinci_Resolve_Studio.png" alt="DaVinci Resolve" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">DaVinci</span>
                 </div>
 
                 <!-- CapCut (Source VectorLogoZone - High Quality) -->
                 <div class="skill-badge">
-                    <img src="images2/CapCut-Logo.png" alt="CapCut" class="skill-logo">
+                    <img src="images2/CapCut-Logo.png" alt="CapCut" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">CapCut</span>
                 </div>
 
                 <!-- Canva (Official Brand Mark) -->
                 <div class="skill-badge">
-                    <img src="images2/Canva-Logo-Design-Platform-Icon.png" alt="Canva" class="skill-logo">
+                    <img src="images2/Canva-Logo-Design-Platform-Icon.png" alt="Canva" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">Canva</span>
                 </div>
 
                 <!-- Gemini (Google Official Sparkle) -->
                 <div class="skill-badge">
-                    <img src="images2/gemini-color-light (Personnalisé).png" alt="Gemini" class="skill-logo">
+                    <img src="images2/gemini-color-light (Personnalisé).png" alt="Gemini" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">Gemini</span>
                 </div>
 
                 <!-- ChatGPT (OpenAI Official Logo) -->
                 <div class="skill-badge">
-                    <img src="images2/LOGO OPENIA.png" alt="ChatGPT" class="skill-logo">
+                    <img src="images2/LOGO OPENIA.png" alt="ChatGPT" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">ChatGPT</span>
                 </div>
 
                 <!-- Photoshop (Official Badge) -->
                 <div class="skill-badge">
-                    <img src="images2/500px-Adobe_Photoshop_CC_icon.png" alt="Photoshop" class="skill-logo">
+                    <img src="images2/500px-Adobe_Photoshop_CC_icon.png" alt="Photoshop" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">Photoshop</span>
                 </div>
 
                 <!-- Illustrator (Official Badge) -->
                 <div class="skill-badge">
-                    <img src="images2/500px-Adobe_Illustrator_CC_icon.png" alt="Illustrator" class="skill-logo">
+                    <img src="images2/500px-Adobe_Illustrator_CC_icon.png" alt="Illustrator" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">Illustrator</span>
                 </div>
 
                 <!-- Python -->
                 <div class="skill-badge">
-                    <img src="images2/icons8-python-240.png" alt="Python" class="skill-logo">
+                    <img src="images2/icons8-python-240.png" alt="Python" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">Python</span>
                 </div>
 
                 <!-- HTML5 -->
                 <div class="skill-badge">
-                    <img src="images2/500px-HTML5_logo_and_wordmark.png" alt="HTML5" class="skill-logo">
+                    <img src="images2/500px-HTML5_logo_and_wordmark.png" alt="HTML5" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">HTML5</span>
                 </div>
 
                 <!-- CSS3 -->
                 <div class="skill-badge">
-                    <img src="images2/500px-CSS3_logo_and_wordmark.png" alt="CSS3" class="skill-logo">
+                    <img src="images2/500px-CSS3_logo_and_wordmark.png" alt="CSS3" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">CSS3</span>
                 </div>
 
                 <!-- JavaScript -->
                 <div class="skill-badge">
-                    <img src="images2/500px-Unofficial_JavaScript_logo_2.png" alt="JavaScript" class="skill-logo">
+                    <img src="images2/500px-Unofficial_JavaScript_logo_2.png" alt="JavaScript" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm md:text-xs font-bold uppercase tracking-widest mt-2">JS</span>
                 </div>
 
                 <!-- PHP -->
                 <div class="skill-badge">
-                    <img src="images2/500px-PHP-logo.png" alt="PHP" class="skill-logo">
+                    <img src="images2/500px-PHP-logo.png" alt="PHP" class="skill-logo" loading="lazy" decoding="async">
                     <span class="text-sm font-bold uppercase tracking-widest mt-2">PHP</span>
                 </div>
 
@@ -762,19 +776,19 @@
                 <div class="space-y-4">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
                         <span>ethan.caraibe@gmail.com</span>
                     </div>
                     <div class="flex items-center gap-4">
                         <a href="https://www.linkedin.com/in/ethan-caraibe-1bb3172ba/" target="_blank" class="flex items-center gap-4 group">
-                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></div>
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all"><i class="fab fa-linkedin-in" aria-hidden="true"></i></div>
                             <span class="group-hover:text-blue-400 transition-colors">linkedin.com/in/ethancaraibe</span>
                         </a>
                     </div>
                     <div class="flex items-center gap-4">
                         <a href="https://www.instagram.com/blue93971/" target="_blank" class="flex items-center gap-4 group">
-                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all"><i class="fab fa-instagram"></i></div>
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all"><i class="fab fa-instagram" aria-hidden="true"></i></div>
                             <span class="group-hover:text-blue-400 transition-colors">@blue93971</span>
                         </a>
                     </div>
@@ -783,9 +797,12 @@
             
             <!-- FORMULAIRE CONNECTÉ À FORMSPREE -->
             <form id="contact-form" action="https://formspree.io/f/xnnjzego" method="POST" class="md:w-1/2 space-y-4">
-                <input type="text" name="name" required placeholder="Votre Nom" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500 transition text-white">
-                <input type="email" name="email" required placeholder="Votre Email" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500 transition text-white">
-                <textarea name="message" required placeholder="Votre Message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500 transition text-white"></textarea>
+                <label for="contact-name" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Votre Nom</label>
+                <input id="contact-name" type="text" name="name" required placeholder="Votre Nom" autocomplete="name" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500 transition text-white">
+                <label for="contact-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Votre Email</label>
+                <input id="contact-email" type="email" name="email" required placeholder="Votre Email" autocomplete="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500 transition text-white">
+                <label for="contact-message" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Votre Message</label>
+                <textarea id="contact-message" name="message" required placeholder="Votre Message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500 transition text-white"></textarea>
                 
                 <button type="submit" id="submit-btn" class="btn-ki w-full py-4 rounded-xl font-bold uppercase tracking-widest text-white">
                     <span id="btn-text">Envoyer le message</span>
@@ -794,6 +811,8 @@
             </form>
         </div>
     </section>
+
+    </main>
 
     <script>
         // Gestion de l'envoi du formulaire via AJAX pour éviter la redirection
@@ -807,7 +826,7 @@
             
             // État de chargement
             btn.disabled = true;
-            btnText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Transmission...';
+            btnText.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Transmission...';
             status.innerText = "";
 
             const data = new FormData(form);
@@ -823,7 +842,7 @@
 
                 if (response.ok) {
                     // Succès : Message de réussite
-                    btnText.innerHTML = '<i class="fas fa-check"></i> Signal envoyé !';
+                    btnText.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Signal envoyé !';
                     status.classList.add("text-blue-400");
                     status.innerText = "Fusion réussie ! Je vous répondrai sous peu.";
                     form.reset();
@@ -849,13 +868,13 @@
     </script>
 
     <!-- FOOTER -->
-    <footer class="py-12 px-6 border-t border-white/5 text-center text-gray-500 text-sm">
+    <footer role="contentinfo" class="py-12 px-6 border-t border-white/5 text-center text-gray-500 text-sm">
         <p>© 2026 Ethan Caraïbe — Portfolio BUT MMI </p>
         <p class="mt-2 italic">Designé et codé avec l'énergie du Super Saiyan Blue.</p>
         <button onclick="toggleMentionsModal()" class="mt-4 hover:text-blue-500 transition uppercase tracking-tighter text-[10px] font-bold">Mentions Légales</button>
     </footer>
      <!-- MODAL MENTIONS LÉGALES -->
-    <div id="mentions-modal" class="custom-modal-overlay" onclick="closeMentionsOnOverlay(event)">
+    <div id="mentions-modal" class="custom-modal-overlay" onclick="closeMentionsOnOverlay(event)" role="dialog" aria-modal="true" aria-label="Mentions légales">
         <div class="modal-content glass-card p-8 md:p-12 overflow-y-auto">
             <span class="close-modal" onclick="toggleMentionsModal()">&times;</span>
             <h2 class="dbz-font text-2xl font-black italic mb-8 uppercase text-blue-500">Mentions <span class="text-white">Légales</span></h2>
@@ -905,13 +924,13 @@
     </div>
 
     <!-- MODAL PREVIEW -->
-    <div id="preview-modal" onclick="closePreviewOnOverlay(event)">
+    <div id="preview-modal" onclick="closePreviewOnOverlay(event)" role="dialog" aria-modal="true" aria-label="Prévisualisation du projet">
         <div class="preview-container">
             <!-- Header bar -->
             <div class="preview-header">
                 <div class="flex items-center gap-3">
                     <button onclick="closePreviewModal()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-400 flex items-center justify-center transition text-white/60 text-sm">
-                        <i class="fas fa-times"></i>
+                        <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                     <span id="preview-title" class="dbz-font text-xs italic font-black text-white/80 uppercase hidden sm:block"></span>
                     <span id="preview-type-badge" style="display:none" class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400"></span>
@@ -919,7 +938,7 @@
                 <div class="preview-url-bar" id="preview-url-display">—</div>
                 <div class="flex items-center gap-2">
                     <a id="preview-open-link" href="#" target="_blank" class="btn-ki px-5 py-2 rounded-full font-bold uppercase text-[10px] flex items-center gap-2 whitespace-nowrap">
-                        <i class="fas fa-external-link-alt"></i>
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                         <span class="hidden sm:inline">Ouvrir</span>
                     </a>
                 </div>
@@ -943,19 +962,19 @@
                     <div style="width:100%; padding:10px 16px 14px; display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.05); flex-shrink:0; gap:12px;">
                         <p id="preview-canva-title" class="dbz-font text-xs italic font-black uppercase text-white/80 truncate" style="flex:1; margin:0;"></p>
                         <a id="preview-canva-btn" href="#" target="_blank" class="btn-ki px-5 py-2 rounded-full font-bold uppercase text-[10px] flex items-center gap-2 whitespace-nowrap" style="flex-shrink:0;">
-                            <i class="fas fa-external-link-alt"></i> Ouvrir
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i> Ouvrir
                         </a>
                     </div>
                 </div>
                 <!-- Fallback si le site bloque l'iframe -->
                 <div class="preview-fallback" id="preview-fallback">
                     <div class="w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-4">
-                        <i class="fas fa-shield-alt text-blue-500 text-3xl"></i>
+                        <i class="fas fa-shield-alt text-blue-500 text-3xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="dbz-font text-lg italic font-black uppercase">Aperçu bloqué</h3>
                     <p class="text-gray-500 text-sm max-w-sm">Ce site interdit l'affichage dans un cadre externe pour des raisons de sécurité.</p>
                     <a id="fallback-link" href="#" target="_blank" class="btn-ki mt-4 px-8 py-3 rounded-full font-bold uppercase text-xs flex items-center gap-2">
-                        <i class="fas fa-external-link-alt"></i> Visiter le site
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Visiter le site
                     </a>
                 </div>
             </div>
@@ -1270,24 +1289,13 @@
         let currentProjectIndex = 0;
         let filteredProjects = [...projects];
 
-        const LIGHT_BALL = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lg" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fde68a"/><stop offset="45%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#92400e"/></radialGradient><radialGradient id="lg2" cx="30%" cy="25%" r="40%"><stop offset="0%" stop-color="rgba(255,255,255,0.65)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(#lg)" stroke="#d97706" stroke-width="1.2"/><circle cx="16" cy="16" r="14" fill="url(#lg2)"/><polygon points="16,10.5 17.5,14.5 21.5,14.5 18.3,17 19.5,21 16,18.5 12.5,21 13.7,17 10.5,14.5 14.5,14.5" fill="rgba(210,40,40,0.95)" stroke="rgba(130,15,15,0.5)" stroke-width="0.4"/><ellipse cx="11" cy="10" rx="3.5" ry="2" fill="rgba(255,255,255,0.4)" transform="rotate(-30 11 10)"/></svg>`;
-        const DARK_BALL  = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="dg" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#5a6a8a"/><stop offset="45%" stop-color="#1e2a40"/><stop offset="100%" stop-color="#080e1a"/></radialGradient><radialGradient id="dg2" cx="30%" cy="25%" r="40%"><stop offset="0%" stop-color="rgba(160,190,255,0.5)"/><stop offset="100%" stop-color="rgba(160,190,255,0)"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(#dg)" stroke="#1e3a5f" stroke-width="1.2"/><circle cx="16" cy="16" r="14" fill="url(#dg2)"/><polygon points="16,9 17,11.8 20,11.8 17.8,13.5 18.6,16.2 16,14.6 13.4,16.2 14.2,13.5 12,11.8 15,11.8" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.35"/><polygon points="10,17 10.8,19.4 13.2,19.4 11.4,20.8 12,23 10,21.6 8,23 8.6,20.8 6.8,19.4 9.2,19.4" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.3"/><polygon points="22,17 22.8,19.4 25.2,19.4 23.4,20.8 24,23 22,21.6 20,23 20.6,20.8 18.8,19.4 21.2,19.4" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.3"/><polygon points="16,18 16.7,20 18.8,20 17.2,21.2 17.8,23.2 16,22 14.2,23.2 14.8,21.2 13.2,20 15.3,20" fill="rgba(220,50,50,0.95)" stroke="rgba(140,20,20,0.5)" stroke-width="0.3"/><ellipse cx="11" cy="10" rx="3.5" ry="2" fill="rgba(200,220,255,0.18)" transform="rotate(-30 11 10)"/></svg>`;
-
-        function toggleTheme() {
-            const isLight = document.body.classList.toggle('light-mode');
-            document.getElementById('theme-toggle').innerHTML = isLight ? DARK_BALL : LIGHT_BALL;
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        }
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            document.addEventListener('DOMContentLoaded', () => document.getElementById('theme-toggle').innerHTML = DARK_BALL);
-        }
-
-         function toggleMobileMenu() {
+        function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('active');
-            // Empêche le scroll quand le menu est ouvert
-            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+            const isOpen = menu.classList.contains('active');
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+            const btn = document.getElementById('burger-btn');
+            if (btn) btn.setAttribute('aria-expanded', String(isOpen));
         }
 
         function renderProjects(filter = "Tous") {
@@ -1318,6 +1326,8 @@
             }
         });
 
+        let _lastFocusedCard = null;
+
         function openProjectModal(index) {
             currentProjectIndex = index;
             const project = filteredProjects[currentProjectIndex];
@@ -1326,7 +1336,9 @@
             document.getElementById('modal-title').innerText = project.title;
             document.getElementById('modal-cat').innerText = project.category;
             document.getElementById('modal-desc').innerText = project.desc;
-            document.getElementById('modal-img').src = project.img;
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = project.img;
+            imgEl.alt = 'Visuel du projet : ' + project.title;
             document.getElementById('modal-link').href = project.link;
             
             document.getElementById('project-modal').style.display = 'flex';
@@ -1509,6 +1521,15 @@
 
         window.onload = () => renderProjects();
         createEnergyParticles();
+
+        // Fermeture des modales avec la touche Échap
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            if (document.getElementById('preview-modal').style.display === 'flex') { closePreviewModal(); return; }
+            if (document.getElementById('project-modal').style.display === 'flex') { closeProjectModal(); return; }
+            if (document.getElementById('cv-modal').style.display === 'flex') { toggleModal(); return; }
+            if (document.getElementById('mentions-modal').style.display === 'flex') { toggleMentionsModal(); return; }
+        });
         </script>
 </body>
 </html>
